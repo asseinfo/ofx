@@ -31,7 +31,6 @@ Invalid files will raise an OFX::UnsupportedFileError.
 ### Release at Github
 
 1. Create a [new release on Github](https://github.com/asseinfo/ofx/releases/new)
-1. Click at **Draft a new release**
 1. Fill the **the new tag**. Ex.: v4.0.1
 1. Target `master`
 1. Fill the **Release title**. Ex.: 4.0.1 (March 3, 2020)
