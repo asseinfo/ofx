@@ -5,8 +5,6 @@
 
 A simple OFX (Open Financial Exchange) parser built on top of Nokogiri. Currently supports both OFX 1.0.2 and 2.1.1.
 
-Works on both ruby 1.9 and 2.0.
-
 ## Usage
 
 ```ruby
@@ -24,20 +22,23 @@ Invalid files will raise an OFX::UnsupportedFileError.
 
 ## Deploy
 
-1. Create and send the new version to Rubygems
+### New version
 
-```ruby
-bundle exec rake release
-```
+1. New version at `lib/ofx/version.rb`;
+2. Execute `$ bundle`;
+3. Commit and push to Github;
 
-2. Create a [new release on Github](https://github.com/annacruz/ofx/releases/new)
+### Release at Github
 
-* Choose **the new tag** (Ex.: v0.10.1)
-* Fill the **Release title** (Ex.: 0.10.1)
-* Click at **Generate release notes**
-* Click at **Publish release**
+1. Create a [new release on Github](https://github.com/asseinfo/ofx/releases/new)
+1. Click at **Draft a new release**
+1. Fill the **the new tag**. Ex.: v4.0.1
+1. Target `master`
+1. Fill the **Release title**. Ex.: 4.0.1 (March 3, 2020)
+1. Click at **Generate release notes**
+1. Click at **Publish release**
 
-3. Done!
+  [Reference here](https://help.github.com/en/github/administering-a-repository/managing-releases-in-a-repository)
 
 ## Creator
 
