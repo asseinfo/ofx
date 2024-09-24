@@ -35,7 +35,7 @@ describe OFX::Parser::OFX102 do
     @parser.statements.size.should == 1
     @parser.statements.first.should be_a_kind_of(OFX::Statement)
   end
-  
+
   it "should know about all transaction types" do
     valid_types = [
       'CREDIT', 'DEBIT', 'INT', 'DIV', 'FEE', 'SRVCHG', 'DEP', 'ATM', 'POS', 'XFER',
