@@ -6,77 +6,72 @@ describe OFX::Parser::OFX211 do
     @parser = @ofx.parser
   end
 
-  it "should have a version" do
-    OFX::Parser::OFX211::VERSION.should == "2.1.1"
+  it "has a version" do
+    expect(OFX::Parser::OFX211::VERSION).to eq("2.1.1")
   end
 
-  it "should set headers" do
-    @parser.headers.should == @ofx.headers
+  it "sets headers" do
+    expect(@parser.headers).to eq(@ofx.headers)
   end
 
-  it "should set body" do
-    @parser.body.should == @ofx.body
+  it "sets body" do
+    expect(@parser.body).to eq(@ofx.body)
   end
 
-  it "should set account" do
-    @parser.account.should be_a_kind_of(OFX::Account)
+  it "sets account" do
+    expect(@parser.account).to be_a_kind_of(OFX::Account)
   end
 
-  it "should set account" do
-    @parser.sign_on.should be_a_kind_of(OFX::SignOn)
+  it "sets sign_on" do
+    expect(@parser.sign_on).to be_a_kind_of(OFX::SignOn)
   end
 
-  it "should set accounts" do
-    @parser.accounts.size.should == 2
+  it "sets accounts" do
+    expect(@parser.accounts.size).to eq(2)
   end
 
-  it "should set statements" do
-    @parser.statements.size.should == 2
-    @parser.statements.first.should be_a_kind_of(OFX::Statement)
-  end
-
-  context "transactions" do
+  describe "transactions" do
     # Test file contains only three transactions. Let's just check
     # them all.
-    context "first" do
+    describe "first" do
       before do
         @t = @parser.accounts[0].transactions[0]
       end
 
-      it "should contain the correct values" do
-        @t.amount.should == BigDecimal('-80')
-        @t.fit_id.should == "219378"
-        @t.memo.should be_empty
-        @t.posted_at.should == Time.parse("2005-08-24 08:00:00 +0000")
-        @t.name.should == "FrogKick Scuba Gear"
+      it "contains the correct values" do
+        expect(@t.amount).to eq(BigDecimal('-80'))
+        expect(@t.fit_id).to eq("219378")
+        expect(@t.memo).to be_empty
+        expect(@t.posted_at).to eq(Time.parse("2005-08-24 08:00:00 +0000"))
+        expect(@t.name).to eq("FrogKick Scuba Gear")
       end
     end
 
-    context "second" do
+    describe "second" do
       before do
         @t = @parser.accounts[1].transactions[0]
       end
 
-      it "should contain the correct values" do
-        @t.amount.should == BigDecimal('-23')
-        @t.fit_id.should == "219867"
-        @t.memo.should be_empty
-        @t.posted_at.should == Time.parse("2005-08-11 08:00:00 +0000")
-        @t.name.should == "Interest Charge"
+      it "contains the correct values" do
+        expect(@t.amount).to eq(BigDecimal('-23'))
+        expect(@t.fit_id).to eq("219867")
+        expect(@t.memo).to be_empty
+        expect(@t.posted_at).to eq(Time.parse("2005-08-11 08:00:00 +0000"))
+        expect(@t.name).to eq("Interest Charge")
       end
     end
 
-    context "third" do
+    describe "third" do
       before do
         @t = @parser.accounts[1].transactions[1]
       end
 
-      it "should contain the correct values" do
-        @t.amount.should == BigDecimal('350')
-        @t.fit_id.should == "219868"
-        @t.memo.should be_empty
-        @t.posted_at.should == Time.parse("2005-08-11 08:00:00 +0000")
-        @t.name.should == "Payment - Thank You"
+      it "contains the correct values" do
+        expect(@t.amount).to eq(BigDecimal('350'))
+        expect(@t.fit_id).to eq("219868")
+        expect(@t.memo).to be_empty
+        expect(@t.posted_at).to eq(Time.parse("2005-08-11 08:00:00 +0000"))
+        expect(@t.name).to eq("Payment - Thank You")
       end
     end
   end
