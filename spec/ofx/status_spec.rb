@@ -9,15 +9,15 @@ describe OFX::Status do
     let(:ofx_file) { "spec/fixtures/creditcard.ofx" }
 
     it "returns code" do
-      expect(status.code).to eq(0)
+      expect(status.code).to eql 0
     end
 
     it "returns severity" do
-      expect(status.severity).to eq(:info)
+      expect(status.severity).to eql :info
     end
 
     it "returns message" do
-      expect(status.message).to eq("")
+      expect(status.message).to eql ""
     end
 
     it "is successful" do
@@ -29,15 +29,15 @@ describe OFX::Status do
     let(:ofx_file) { "spec/fixtures/error.ofx" }
 
     it "returns code" do
-      expect(status.code).to eq(2000)
+      expect(status.code).to eql 2000
     end
 
     it "returns severity" do
-      expect(status.severity).to eq(:error)
+      expect(status.severity).to eql :error
     end
 
     it "returns message" do
-      expect(status.message).to eq("We were unable to process your request. Please try again later.")
+      expect(status.message).to eql "We were unable to process your request. Please try again later."
     end
 
     it "is not successful" do

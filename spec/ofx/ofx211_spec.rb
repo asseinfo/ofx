@@ -7,15 +7,15 @@ describe OFX::Parser::OFX211 do
   end
 
   it "has a version" do
-    expect(OFX::Parser::OFX211::VERSION).to eq("2.1.1")
+    expect(OFX::Parser::OFX211::VERSION).to eql "2.1.1"
   end
 
   it "sets headers" do
-    expect(@parser.headers).to eq(@ofx.headers)
+    expect(@parser.headers).to eql @ofx.headers
   end
 
   it "sets body" do
-    expect(@parser.body).to eq(@ofx.body)
+    expect(@parser.body).to eql @ofx.body
   end
 
   it "sets account" do
@@ -27,51 +27,51 @@ describe OFX::Parser::OFX211 do
   end
 
   it "sets accounts" do
-    expect(@parser.accounts.size).to eq(2)
+    expect(@parser.accounts.size).to eql 2
   end
 
-  describe "transactions" do
+  context "transactions" do
     # Test file contains only three transactions. Let's just check
     # them all.
-    describe "first" do
+    context "first" do
       before do
         @t = @parser.accounts[0].transactions[0]
       end
 
       it "contains the correct values" do
-        expect(@t.amount).to eq(BigDecimal('-80'))
-        expect(@t.fit_id).to eq("219378")
+        expect(@t.amount).to eql BigDecimal('-80')
+        expect(@t.fit_id).to eql "219378"
         expect(@t.memo).to be_empty
-        expect(@t.posted_at).to eq(Time.parse("2005-08-24 08:00:00 +0000"))
-        expect(@t.name).to eq("FrogKick Scuba Gear")
+        expect(@t.posted_at).to eql Time.parse("2005-08-24 08:00:00 +0000")
+        expect(@t.name).to eql "FrogKick Scuba Gear"
       end
     end
 
-    describe "second" do
+    context "second" do
       before do
         @t = @parser.accounts[1].transactions[0]
       end
 
       it "contains the correct values" do
-        expect(@t.amount).to eq(BigDecimal('-23'))
-        expect(@t.fit_id).to eq("219867")
+        expect(@t.amount).to eql BigDecimal('-23')
+        expect(@t.fit_id).to eql "219867"
         expect(@t.memo).to be_empty
-        expect(@t.posted_at).to eq(Time.parse("2005-08-11 08:00:00 +0000"))
-        expect(@t.name).to eq("Interest Charge")
+        expect(@t.posted_at).to eql Time.parse("2005-08-11 08:00:00 +0000")
+        expect(@t.name).to eql "Interest Charge"
       end
     end
 
-    describe "third" do
+    context "third" do
       before do
         @t = @parser.accounts[1].transactions[1]
       end
 
       it "contains the correct values" do
-        expect(@t.amount).to eq(BigDecimal('350'))
-        expect(@t.fit_id).to eq("219868")
+        expect(@t.amount).to eql BigDecimal('350')
+        expect(@t.fit_id).to eql "219868"
         expect(@t.memo).to be_empty
-        expect(@t.posted_at).to eq(Time.parse("2005-08-11 08:00:00 +0000"))
-        expect(@t.name).to eq("Payment - Thank You")
+        expect(@t.posted_at).to eql Time.parse("2005-08-11 08:00:00 +0000")
+        expect(@t.name).to eql "Payment - Thank You"
       end
     end
   end

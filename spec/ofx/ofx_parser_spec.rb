@@ -7,41 +7,41 @@ describe OFX::Parser do
 
   it "accepts file path" do
     @ofx = OFX::Parser::Base.new("spec/fixtures/sample.ofx")
-    expect(@ofx.content).to_not be_nil
+    expect(@ofx.content).not_to be_nil
   end
 
   it "accepts file handler" do
     file = open("spec/fixtures/sample.ofx")
     @ofx = OFX::Parser::Base.new(file)
-    expect(@ofx.content).to_not be_nil
+    expect(@ofx.content).not_to be_nil
   end
 
   it "accepts file content" do
     file = open("spec/fixtures/sample.ofx").read
     @ofx = OFX::Parser::Base.new(file)
-    expect(@ofx.content).to_not be_nil
+    expect(@ofx.content).not_to be_nil
   end
 
   it "sets content" do
-    expect(@ofx.content).to eq(open("spec/fixtures/sample.ofx").read)
+    expect(@ofx.content).to eql open("spec/fixtures/sample.ofx").read
   end
 
   it "works with UTF8 and Latin1 encodings" do
     @ofx = OFX::Parser::Base.new("spec/fixtures/utf8.ofx")
-    expect(@ofx.content).to eq(open("spec/fixtures/utf8.ofx").read)
+    expect(@ofx.content).to eql open("spec/fixtures/utf8.ofx").read
   end
 
   it "sets body" do
-    expect(@ofx.body).to_not be_nil
+    expect(@ofx.body).not_to be_nil
   end
 
-  it "has raise exception when trying to parse an unsupported OFX version" do
+  it "raises the exception when trying to parse an unsupported OFX version" do
     expect{
       OFX::Parser::Base.new("spec/fixtures/invalid_version.ofx")
     }.to raise_error(OFX::UnsupportedFileError)
   end
 
-  it "has raise exception when trying to parse an invalid file" do
+  it "raises the exception when trying to parse an invalid file" do
     expect{
       OFX::Parser::Base.new("spec/fixtures/avatar.gif")
     }.to raise_error(OFX::UnsupportedFileError)
@@ -51,27 +51,27 @@ describe OFX::Parser do
     expect(OFX::Parser::OFX211).to receive(:new).and_return('ofx-211-parser')
 
     ofx = OFX::Parser::Base.new(ofx_2_example('200'))
-    expect(ofx.parser).to eq('ofx-211-parser')
+    expect(ofx.parser).to eql 'ofx-211-parser'
   end
 
   it "uses 211 parser to parse version 202 ofx files" do
     expect(OFX::Parser::OFX211).to receive(:new).and_return('ofx-211-parser')
 
     ofx = OFX::Parser::Base.new(ofx_2_example('202'))
-    expect(ofx.parser).to eq('ofx-211-parser')
+    expect(ofx.parser).to eql 'ofx-211-parser'
   end
 
   describe "headers" do
     it "has OFXHEADER" do
-      expect(@ofx.headers["OFXHEADER"]).to eq("100")
+      expect(@ofx.headers["OFXHEADER"]).to eql "100"
     end
 
     it "has DATA" do
-      expect(@ofx.headers["DATA"]).to eq("OFXSGML")
+      expect(@ofx.headers["DATA"]).to eql "OFXSGML"
     end
 
     it "has VERSION" do
-      expect(@ofx.headers["VERSION"]).to eq("102")
+      expect(@ofx.headers["VERSION"]).to eql "102"
     end
 
     it "has SECURITY" do
@@ -80,11 +80,11 @@ describe OFX::Parser do
     end
 
     it "has ENCODING" do
-      expect(@ofx.headers["ENCODING"]).to eq("USASCII")
+      expect(@ofx.headers["ENCODING"]).to eql "USASCII"
     end
 
     it "has CHARSET" do
-      expect(@ofx.headers["CHARSET"]).to eq("1252")
+      expect(@ofx.headers["CHARSET"]).to eql "1252"
     end
 
     it "has COMPRESSION" do

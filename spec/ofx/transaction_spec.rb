@@ -206,7 +206,7 @@ RSpec.describe OFX::Transaction do
     end
 
     it "does not raise error" do
-      expect { @parser.account.transactions }.to_not raise_error
+      expect { @parser.account.transactions }.not_to raise_error
     end
 
     it "returns zero in amount" do

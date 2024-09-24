@@ -9,15 +9,15 @@ describe OFX::SignOn do
 
   describe "sign_on" do
     it "returns language" do
-      expect(@sign_on.language).to eq("ENG")
+      expect(@sign_on.language).to eql "ENG"
     end
 
     it "returns Financial Institution ID" do
-      expect(@sign_on.fi_id).to eq("24909")
+      expect(@sign_on.fi_id).to eql "24909"
     end
 
     it "returns Financial Institution Name" do
-      expect(@sign_on.fi_name).to eq("Citigroup")
+      expect(@sign_on.fi_name).to eql "Citigroup"
     end
 
     it "returns status" do
