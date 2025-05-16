@@ -54,6 +54,13 @@ describe OFX::Parser do
     expect(ofx.parser).to eql 'ofx-102-parser'
   end
 
+  it "uses 102 parser to parse version 103 ofx files" do
+    expect(OFX::Parser::OFX102).to receive(:new).and_return('ofx-102-parser')
+
+    ofx = OFX::Parser::Base.new(ofx_2_example('103'))
+    expect(ofx.parser).to eql 'ofx-102-parser'
+  end
+
   it "uses 211 parser to parse version 200 ofx files" do
     expect(OFX::Parser::OFX211).to receive(:new).and_return('ofx-211-parser')
 
