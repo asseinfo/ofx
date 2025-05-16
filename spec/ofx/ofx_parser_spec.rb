@@ -1,6 +1,17 @@
 require "spec_helper"
 
 describe OFX::Parser do
+  def ofx_2_example(version)
+    <<~OFX_CONTENT
+      <?xml version="1.0" encoding="US-ASCII"?>
+
+      <?OFX OFXHEADER="200" VERSION="#{version}" SECURITY="NONE" OLDFILEUID="NONE" NEWFILEUID="NONE"?>"
+
+      <OFX>
+      </OFX>
+    OFX_CONTENT
+  end
+
   before do
     @ofx = OFX::Parser::Base.new("spec/fixtures/sample.ofx")
   end
@@ -131,14 +142,5 @@ describe OFX::Parser do
       @ofx = OFX::Parser::Base.new(ofx_with_carriage_return)
       expect(@ofx.headers.size).to be(9)
     end
-  end
-
-  def ofx_2_example(version)
-    <<-EndOfx
-<?xml version="1.0" encoding="US-ASCII"?>
-<?OFX OFXHEADER="200" VERSION="#{version}" SECURITY="NONE" OLDFILEUID="NONE" NEWFILEUID="NONE"?>"
-<OFX>
-</OFX>
-    EndOfx
   end
 end
